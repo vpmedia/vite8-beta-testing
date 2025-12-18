@@ -13,6 +13,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    env:
+      RUST_BACKTRACE: 1
     strategy:
       matrix:
         node-version: [24.X]
