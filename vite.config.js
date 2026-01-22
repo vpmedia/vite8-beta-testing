@@ -7,14 +7,24 @@ export default defineConfig({
     react(),
   ],
   test: {
-      include: ['./src/**/*.test.{js,jsx,ts,tsx}'],
-      globals: true,
       environment: 'jsdom',
+      globals: true,
+      include: ['./src/**/*.test.{js,jsx,ts,tsx}'],
+      isolate: false,
+      pool: 'threads',
+      root: '.',
+      setupFiles: ['./vitest.setup.js'],
       watch: false,
       coverage: {
         provider: 'v8',
         reporter: ['text'],
         include: ['src/**/*.{js,jsx,ts,tsx}'],
+      },
+      css: { include: [/@mui\/x-data-grid/iu] },
+      server: {
+        deps: {
+          inline: [/@mui\/x-data-grid/iu],
+        },
       },
     },
 })
